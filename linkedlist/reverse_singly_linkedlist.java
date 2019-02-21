@@ -52,7 +52,39 @@ public class reverse_singly_linkedlist{
 			reversed = tmp;
 		}
 		return reversed;
-	}	
+	}
+	/** The following function reverse a singly linked 
+	 *  list given a starting and ending position
+	 *
+	 *  @param head : Input linkedlist
+	 *  @param start : starting Node index
+	 *  @param end : ending node index
+	 *  @return : reversed linkedlist
+	 */
+	public static LinkedListNode reverse_window(LinkedListNode head, int start, int end){
+		if (head == null || head.next == null) return head;
+		LinkedListNode begin = head;
+		for (int i = 1; i<(start-1); i++){
+			begin = begin.next;
+		}
+		
+		LinkedListNode reversed = begin.next;
+		LinkedListNode todo = reversed.next;
+		
+		LinkedListNode reversed_end = reversed;
+		reversed.next = null;
+		int count = 1;
+	    while (count<= (end-start)){
+	    	LinkedListNode tmp = todo;
+	    	todo = todo.next;
+	    	tmp.next = reversed;
+	    	reversed = tmp;
+	    	count++;	
+	    }
+	    begin.next = reversed;
+	    reversed_end.next = todo;
+	    return head;
+	}
 	public static void main(String[] args){
 		int[] arr = {1,2,3,4,5};
 		LinkedListNode list = buildList(arr);
@@ -61,5 +93,9 @@ public class reverse_singly_linkedlist{
 		LinkedListNode reversed = reverse(list);
 		System.out.println("reversed list is: ");
 		printList(reversed);
+		LinkedListNode list2 = buildList(arr);
+		LinkedListNode reversed_1 = reverse_window(list2,2,4);
+		System.out.println("partially reversed list at index 2 to 4 is: ");
+		printList(reversed_1);
 	}
 }	
