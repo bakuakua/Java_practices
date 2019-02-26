@@ -118,12 +118,41 @@ public class LinkedList{
 		}
 		return head;
 	}
+	/** The following function removes a given key from the singly linked list
+	 *  Note it should remove keys duplicate too
+	 *  @param head : input linkedlist
+	 *  @param key : the key top remove
+	 *  @return : the modified input list
+	 */
+	public static LinkedListNode remove_key (LinkedListNode head, int key){
+		//note check if the list if empty 
+		if (head == null) return head;
+		LinkedListNode curr = head;
+		LinkedListNode prev = null;
+		while (curr != null){
+			if (curr.data == key){
+				if (curr == head){
+					head = head.next;
+					curr = head;
+				}
+				else{
+					prev.next = curr.next;
+					curr = curr.next;
+				}
+			}
+			else{
+				prev = curr;
+				curr = curr.next;			
+			}
+		}
+		return head;
+	}
 	public static void main(String[] args){
-		int[] arr = {1,2,3,5,3};
+		int[] arr = {1,2,3,4,5};
 		LinkedListNode list = buildList(arr);
 		System.out.println("input list is: ");
 		printList(list);
-		LinkedListNode removed = removedup(list);
+		LinkedListNode removed = remove_key(list, 1);
 		printList(removed);
 	}
 }

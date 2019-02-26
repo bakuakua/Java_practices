@@ -1,5 +1,14 @@
 import java.util.*;
 public class LinkedListTest{
+	public static boolean compareList(int[] expected, LinkedList.LinkedListNode input){
+		for (int i: expected){
+			if (i == input.data) {
+				input = input.next;
+			}
+			else return false;
+		}
+		return true;
+	}
 	public static boolean TestBuild(){
 		boolean result = true;
 		int[] arr1 = {1,2,3,4,5};
@@ -56,6 +65,9 @@ public class LinkedListTest{
 		if (list2!=null) result = false;
 		System.out.println("Is the result correct?: \n"+ result);
 		return result;
+	}
+	public static boolean TestRemoveKey(){
+
 	}
 	public static void main(String[] args){
 		TestBuild();
