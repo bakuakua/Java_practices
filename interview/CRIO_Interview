@@ -13,3 +13,25 @@ Thoughts:
 	2. Called at 9:45, and contact still on the T haha. 
 	3. First time waking up this early in a while. Feels pretty good. Gonna go run later in the afternoon
 	4. Brooks got me into the Office. Patiently waiting....... 
+Mock-Demonstration of feature:
+	1. login to system 
+	2. working at a clinical research site: lab report, blood test, med history
+	3. section called files: Takes to incoming. email or fax. rout it to popup at crio. 
+	4. Gotten two docs. Email doesnt know wt the person the file is attached for. Tag: show document. can enter doc tags. Tag to patient or subject. patient  subject when enter a trail. 
+	5. Tag to subkject- category type. Lab report rename tag. Select study based on ID ! Select subject based on name. 
+	6. Can annotate and read file. PI = doctor in charge of trail. PI markup. White out. circle. Write comment->short cut : NCS, CS (clinically significant). buttons or scroll to controll pages. 
+	7. Side show A- all text annotations. Click to navigate to the spots. Show-hide toggle. Rotate. 
+	8. Save draft or save-e-sign-> verification process for e sig or draw. **important** Show history of comments and edits. Other personel to rout to PI. 
+	9. Assign function: rerout doc to PI. Enter message. 
+	10: bucket at top: task lists. 
+	11: reject button-rerout. redeligation of the task. 
+    12: view logs. Keep track of subject. 
+    13: commets #2: annotation are data. comment are for the entire file. @ to pull up people. 
+ Demo guideline:
+ 	1. file edit/management system -> task delegation. 
+ 	typical workflow: 
+ 		1. 2 ways to receive incoming docs. Email/fax and upload. 
+ 		2. perform tag action on the docs (Email doent the purpose of file): Study (search by id), subject search bny name
+ 		3. Edit/annotate file: from left to right: draw, whiteout, text box, circle, arrow, annotation(shortcut), rotate. Side bar show all comments: click to navigate to local comments. 
+ 		4. Post edit: Save & e-sign(password vs draw), save draft Assign Document: reroute document for others. **important** Show history of comments and edits. Other personel to rout to PI.
+ 		5. View log: for a specific subject's history. Internal, vs external. aw
