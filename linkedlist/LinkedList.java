@@ -35,7 +35,24 @@ public class LinkedList{
         }
         System.out.println("NULL");
     }
-    	/** The following function reverse a singly linked 
+    /**get length of the linkedlist
+     * @param head : head of input list
+     * @return : int length
+     */
+    public static int get_length(LinkedListNode head1){
+    	if (head1 == null) return 0;
+    	else {
+    		LinkedListNode curr = head1;
+    		int len = 0;
+    		while (curr != null){
+    			curr = curr.next;
+    			len++;
+    		}
+    		return len;
+    	}
+    } 
+
+    /** The following function reverse a singly linked 
 	 *  list
 	 *  @param head : Input linkedlist to be reversed
 	 *  @return : new linkedlist
@@ -147,12 +164,78 @@ public class LinkedList{
 		}
 		return head;
 	}
+	public static LinkedListNode insert_sorted(LinkedListNode head, LinkedListNode node){
+		if (node == null) return head;
+		if (head == null || node.data <= head.data) {
+			node.next = head;
+			head = node;
+			return head;
+		}
+		LinkedListNode curr = head;
+		while (curr.next != null && node.data>curr.next.data){
+			curr = curr.next;
+		} 
+		node.next = curr.next;
+		curr .next = node;
+		return head;
+	}
+	/** The following function sort a unordered linkedlist from smallest to largest
+	 *  @param head : head node
+	 */
+	public static LinkedListNode sort(LinkedListNode head){
+		LinkedListNode sorted = null;
+		LinkedListNode curr = head;
+		if (head == null) return null;
+		while (curr != null) {
+			LinkedListNode tmp = curr.next;
+			sorted = insert_sorted(sorted, curr);
+			System.out.println(sorted.data);
+			curr = tmp;
+		}
+		return sorted;
+	}
+	/** The following function finds the physical intersection between two linkedlist 
+	 *  @param head1 : the first linkedlist
+	 *  @param head2 : the second linkedlist
+	 *  @return : the node at intersection
+	 */
+	public static LinkedListNode intersect(LinkedListNode h1, LinkedListNode h2){
+		int len1 = get_length(h1);
+		int len2 = get_length(h2);
+		int d = Math.abs(len1 - len2);
+		LinkedListNode curr1 = h1;
+		LinkedListNode curr2 = h2;
+		if (len1 > len2) {
+			int c = 0;
+			while (c < d){
+				curr1 = curr1.next;
+				c++;
+			}
+		}
+		else {
+			int c = 0;
+			while (c < d){
+				curr2 = curr2.next;
+				c++;
+			}
+		}
+	    while (curr1 != null){
+	    	if (curr1 == curr2) return curr1;
+	    	else{
+	    		curr1 = curr1.next;
+	    		curr2 = curr2.next;
+	    	}
+	    }
+		return null;
+
+	}
 	public static void main(String[] args){
-		int[] arr = {1,2,3,4,5};
+		int[] arr = {5,2,3,4,1};
 		LinkedListNode list = buildList(arr);
 		System.out.println("input list is: ");
 		printList(list);
-		LinkedListNode removed = remove_key(list, 1);
-		printList(removed);
+		LinkedListNode sorted = sort(list);
+		printList(sorted);
+		System.out.println(get_length(sorted));
 	}
 }
