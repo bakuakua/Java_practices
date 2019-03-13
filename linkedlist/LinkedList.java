@@ -229,6 +229,28 @@ public class LinkedList{
 		return null;
 
 	}
+	/** The following function returns the nth node from last 
+	 *  @param head : input list
+	 *  @param n : interger N
+	 *  @return : node 
+	 */
+	public static LinkedListNode NthFromLast(LinkedListNode head, int n){
+		LinkedListNode start = head;
+		LinkedListNode end = head;
+		int c = 0;
+		while (c < n){
+			if (end == null) return null;
+			else{
+				end = end.next;
+				c++;
+			}
+		}
+		while (end != null){
+			start = start.next;
+			end = end.next;
+		}
+		return start;
+	}
 	public static void main(String[] args){
 		int[] arr = {5,2,3,4,1};
 		LinkedListNode list = buildList(arr);
