@@ -251,6 +251,66 @@ public class LinkedList{
 		}
 		return start;
 	}
+	/** The following function swaps the nth node with head
+	 *  @param head : input list head node
+	 *  @param n : the nth node to be swaped with head
+	 *  @return : new head of linkedlist
+	 */
+	public static LinkedListNode swap_nth_with_head(LinkedListNode head, int n){
+		LinkedListNode prev = null;
+		LinkedListNode curr = head;
+		if (head == null) return head;
+		if (n == 1) return head;
+		//move curr pointer to the N-1 position
+		while (n>1 && curr!=null){
+			prev = curr;
+			curr = curr.next;
+			n--;
+		}
+		prev.next = head;
+		LinkedListNode temp = head.next;
+		head.next = curr.next;
+		curr.next = temp;
+		return curr;
+	}
+	/** The following function merges two *SORTED linkedlist
+	 *  @param head1 : linkedlist 1
+	 *  @param head2 : linkedlist 2
+	 *  @return : new head of the merged lists
+	 */
+	public static LinkedListNode mergeLists(LinkedListNode head1, LinkedListNode head2){
+		//initialize returning merged list with a null head;
+		LinkedListNode mergedhead = null;
+		//add first node to merged list by comparing the starting nodes of input lists
+		if (head1.data <= head2.data){
+			mergedhead = head1;
+			head1 = head1.next;
+		}
+		else{
+			mergedhead = head2;
+			head2 = head2.next;
+		}
+		//place mergedtail pointer at the merged head; 
+		LinkedListNode mergedtail = mergedhead;
+		//compare head nodes then increment heads and add the smaller node to merged tail
+		while (head1!=null && head2!=null){
+			LinkedListNode temp = null;
+			if (head1.data<=head2.data){
+				temp = head1;
+				head1 = head1.next;
+			}
+			else{
+				temp = head2;
+				head2 = head2.next;
+			}
+			mergedtail.next = temp;
+			mergedtail = temp;
+		}
+		if (head1 != null) mergedtail.next = head1;
+		else if (head2 != null) mergedtail.next = head2;
+
+		return mergedhead;
+	}
 	public static void main(String[] args){
 		int[] arr = {5,2,3,4,1};
 		LinkedListNode list = buildList(arr);
