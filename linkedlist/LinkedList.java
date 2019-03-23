@@ -351,6 +351,46 @@ public class LinkedList{
 		}
 		return head;
 	}
+	/** The following function rotate an singly linkedlist
+	 *  @param head : input linkedlist
+	 *  @param n : how many node to rotate
+	 *  @return : rotated head to linkedlist
+	 */
+	public static LinkedListNode rotate_list(LinkedListNode head, int n){
+		//edge cases:
+		//if input list is null, return null
+		if (head == null || n == 0){
+			return head;
+		}
+		//if input list contains only 1 node all rotation results in same. 
+		if (head.next == null){
+			return head;
+		}
+		//calculate the number of rotation needed
+		//right shift: n%length from start of list
+		//left shift: n+length from start of list
+		int len_list = get_length(head);
+		int len_rot;
+		n = n%len_list;
+		if (n<0) n = n + len_list;
+		if (n == 0) return head;
+	    //find the node before the starting point of rotation
+		int num_rot = len_list - n -1;
+		LinkedListNode end = head;
+        while (num_rot > 0){
+        	num_rot--;
+        	end = end.next;
+        }
+        LinkedListNode start = end.next;
+        end.next = null;
+        LinkedListNode curr = start;
+        while (curr.next != null){
+        	curr = curr.next;
+        }
+        curr.next = head;
+        return start;
+
+	}
 	public static void main(String[] args){
 		int[] arr = {5,2,3,4,1};
 		LinkedListNode list = buildList(arr);
@@ -360,5 +400,4 @@ public class LinkedList{
 		printList(sorted);
 		System.out.println(get_length(sorted));
 	}
-		}
 }
