@@ -311,6 +311,46 @@ public class LinkedList{
 
 		return mergedhead;
 	}
+	/** The following function reverses the even nodes of a linked list
+	 *  @param head : input list to be reversed
+	 *  @return : reversed list
+	 */
+	public static LinkedListNode reverse_even_nodes(LinkedListNode head){
+		// extract even nodes into auxiliary list
+		LinkedListNode curr = head;
+		LinkedListNode even_list = null;
+		while (curr != null && curr.next != null){
+			LinkedListNode even = curr.next;
+			curr.next = even.next;
+			even.next = even_list;
+			even_list = even;
+			curr = curr.next;
+		}
+		//merge the lists alternatively
+		return merge_alt(head,even_list);
+	}
+	/** The following function merges two lists alternatively
+	 */
+	public static LinkedListNode merge_alt(LinkedListNode list1, LinkedListNode list2){
+		if (list1 == null){
+			return list2;
+		}
+		if (list2 == null){
+			return list1;
+		}	
+		if (list1.next == null) {
+      		list1.next = list2;
+    	}
+		LinkedListNode head = list1;
+		while (list1.next!= null && list2 != null){
+			LinkedListNode temp = list2;
+			list2 = list2.next;
+			temp.next = list1.next;
+			list1.next = temp;
+			list1 = temp.next;
+		}
+		return head;
+	}
 	public static void main(String[] args){
 		int[] arr = {5,2,3,4,1};
 		LinkedListNode list = buildList(arr);
@@ -320,4 +360,5 @@ public class LinkedList{
 		printList(sorted);
 		System.out.println(get_length(sorted));
 	}
+		}
 }
