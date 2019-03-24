@@ -391,6 +391,33 @@ public class LinkedList{
         return start;
 
 	}
+	/** The following function reverses every k element of a singly linkedlist
+	 *  @param head : input linkedlist to be reversed
+	 *  @param k : rotate every k element
+	 *  @return : reversed linkedlist
+	 */
+	public static LinkedListNode reverse_k_nodes(LinkedListNode head, int k){
+		// input list is unchanged when k is <= 1
+		if (k <= 1 || head == null) return head;
+		LinkedListNode reversed =null;
+		LinkedListNode prev_tail = null;
+		//reverse first k elements
+		while (head != null){
+			LinkedListNode curr_head = null;
+			LinkedListNode curr_tail = head;
+			for (int i = 0; i<k; i++){
+        if (head == null) break;
+				LinkedListNode tmp = head.next;
+				head.next = curr_head;
+				curr_head = head;
+				head = tmp;
+			}
+			if (reversed == null) reversed = curr_head;
+			if (prev_tail != null) prev_tail.next = curr_head;
+			prev_tail = curr_tail;
+	    }
+	    return reversed;
+	}
 	public static void main(String[] args){
 		int[] arr = {5,2,3,4,1};
 		LinkedListNode list = buildList(arr);
